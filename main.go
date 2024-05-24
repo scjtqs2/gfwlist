@@ -62,7 +62,7 @@ func makeCashRule(domainList []string) {
 
 	tmpRules := make([]C.Rule, 0)
 	for _, s := range domainList {
-		tmpRules = append(tmpRules, rules.NewDomainSuffix(s, "GFW"))
+		tmpRules = append(tmpRules, rules.NewDomainSuffix(s, "🈲 GFW"))
 	}
 	rRule := conf2.TransRule(tmpRules)
 	buf, _ := yaml.Marshal(rRule)
