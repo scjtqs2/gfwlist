@@ -66,7 +66,9 @@ func makeCashRule(domainList []string) {
 	}
 	rRule := conf2.TransRule(tmpRules)
 	buf, _ := yaml.Marshal(rRule)
-	err := writefile("Rules/Clash/gfwlist.yml", buf)
+	conf := bytes.NewBufferString("payload:\n")
+	conf.Write(buf)
+	err := writefile("Rules/Clash/gfwlist.yml", conf.Bytes())
 	if err != nil {
 		panic(err)
 	}
