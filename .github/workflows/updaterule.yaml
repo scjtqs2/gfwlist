@@ -32,9 +32,17 @@ jobs:
         with:
           go-version: '1.22'
       - name: update rules
+        env:
+          MAIL: ${{ secrets.MAIL }}
+          MY_NAME: ${{ secrets.MY_NAME}}
+          TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: |
           go mod tidy
           go run main.go
+          git config --local user.email ${MAIL}
+          git config --local user.name ${MY_NAME}
+          git add Rules/*
+          git commit -m "updated `date +%FT%T%z`"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
