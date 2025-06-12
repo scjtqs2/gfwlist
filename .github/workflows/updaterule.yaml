@@ -38,7 +38,7 @@ jobs:
           TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: |
           go mod tidy
-          go run main.go
+          go run main.go -gfw https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
           git config --local user.email ${MAIL}
           git config --local user.name ${MY_NAME}
           git add Rules/*
